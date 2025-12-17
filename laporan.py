@@ -9,10 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QTableWidgetItem
+from DARAH import *
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        self.Mainwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
         MainWindow.setStyleSheet("\n"
@@ -318,9 +321,40 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.frameStokDetail)
         self.verticalLayout.addWidget(self.stokPage)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.load_stok_data()
+        self.btnRefresh.clicked.connect(self.load_stok_data)
+        self.btnValidasi.clicked.connect(self.tampilkan_validasi)
+        self.btnTransaksi.clicked.connect(self.tampil_transaksi)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+    def load_stok_data(self):
+        self.valueTotalStok.setText(f"{get_total_stok()} Kantong")
+        self.valueKadaluarsa.setText(f"{get_stok_kadaluarsa()} Kantong")
+        items = get_all_stok()
+        self.tableStok.setRowCount(0)
+        for row_number, row_data in enumerate(items):
+            self.tableStok.insertRow(row_number)
+            for column_number, data in enumerate(row_data):
+                self.tableStok.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+                
+                
+    def tampilkan_validasi(self):
+        import validasi 
+        self.validasiWindow = QtWidgets.QMainWindow()
+        self.validasiUI = validasi.Ui_MainWindow()
+        self.validasiUI.setupUi(self.validasiWindow)
+        self.validasiWindow.show()
+        self.Mainwindow.hide()
+        
+    def tampil_transaksi(self):
+        import transaksidarah
+        self.transaksiWindow = QtWidgets.QMainWindow
+        self.transaksiUI = transaksidarah.Ui_MainWindow()
+        self.transaksiUI.setupUi(self.transaksiWindow)
+        self.transaksiWindow.show()
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

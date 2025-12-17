@@ -11,7 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_MainWindow(object):
+    def set_petugas(self, id_user):
+        self.id_petugas = id_user
+        
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
@@ -378,6 +382,66 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.tableAktivitas)
         self.chartsLayout.addWidget(self.chartAktivitas)
         self.verticalLayout_2.addLayout(self.chartsLayout)
+        self.framePendonorHariIni = QtWidgets.QFrame(self.dashboardPage)
+        self.framePendonorHariIni.setStyleSheet("\n"
+"QFrame#framePendonorHariIni {\n"
+"    background-color: white;\n"
+"    border: 1px solid #ddd;\n"
+"}\n"
+"           ")
+        self.framePendonorHariIni.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.framePendonorHariIni.setObjectName("framePendonorHariIni")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.framePendonorHariIni)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.lblPendonorHariIni = QtWidgets.QLabel(self.framePendonorHariIni)
+        self.lblPendonorHariIni.setStyleSheet("font-size: 16px; font-weight: bold; color: #750003; padding: 10px;")
+        self.lblPendonorHariIni.setObjectName("lblPendonorHariIni")
+        self.verticalLayout_9.addWidget(self.lblPendonorHariIni)
+        self.tablePendonorHariIni = QtWidgets.QTableWidget(self.framePendonorHariIni)
+        self.tablePendonorHariIni.setStyleSheet("\n"
+"QTableWidget {\n"
+"    border: none;\n"
+"    background-color: white;\n"
+"    gridline-color: #f0f0f0;\n"
+"}\n"
+"QHeaderView::section {\n"
+"    background-color: #750003;\n"
+"    color: white;\n"
+"    padding: 10px;\n"
+"    border: none;\n"
+"    font-weight: bold;\n"
+"    font-size: 13px;\n"
+"}\n"
+"QTableWidget::item {\n"
+"    padding: 10px;\n"
+"    border-bottom: 1px solid #f0f0f0;\n"
+"}\n"
+"QTableWidget::item:selected {\n"
+"    background-color: #ffeaea;\n"
+"    color: #333333;\n"
+"}\n"
+"              ")
+        self.tablePendonorHariIni.setAlternatingRowColors(True)
+        self.tablePendonorHariIni.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.tablePendonorHariIni.setObjectName("tablePendonorHariIni")
+        self.tablePendonorHariIni.setColumnCount(7)
+        self.tablePendonorHariIni.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tablePendonorHariIni.setHorizontalHeaderItem(6, item)
+        self.verticalLayout_9.addWidget(self.tablePendonorHariIni)
+        self.verticalLayout_2.addWidget(self.framePendonorHariIni)
         self.stackedWidget.addWidget(self.dashboardPage)
         self.verticalLayout.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -424,6 +488,21 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Pendonor"))
         item = self.tableAktivitas.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Kantong"))
+        self.lblPendonorHariIni.setText(_translate("MainWindow", "Data Pendonor Hari Ini"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "No"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Nama Pendonor"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "NIK"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(3)
+        item.setText(_translate("MainWindow", "Golongan Darah"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(4)
+        item.setText(_translate("MainWindow", "Waktu Donor"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(5)
+        item.setText(_translate("MainWindow", "Status"))
+        item = self.tablePendonorHariIni.horizontalHeaderItem(6)
+        item.setText(_translate("MainWindow", "Aksi"))
 
 
 if __name__ == "__main__":

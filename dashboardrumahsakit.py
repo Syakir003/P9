@@ -12,7 +12,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+    def set_petugas(self, id_user):
+        self.id_petugas = id_user
+        
     def setupUi(self, MainWindow):
+        self.mainwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
         MainWindow.setStyleSheet("\n"
@@ -366,11 +370,20 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.dashboardPage)
         self.verticalLayout.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.btnLaporan.clicked.connect(self.tampil_page_laporan)
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+        
+    def tampil_page_laporan(self):
+        import laporan
+        self.laporan_window = QtWidgets.QMainWindow()
+        self.ui = laporan.Ui_MainWindow()
+        self.ui.setupUi(self.laporan_window)
+        self.laporan_window.show()
+        self.mainwindow.hide()
+        
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Dashboard Rumah Sakit - PMI Donor Darah"))

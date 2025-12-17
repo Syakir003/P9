@@ -7,12 +7,12 @@ def connect():
         database="uas_pbo_pmi"
     )
     
-def login_pendonor(nik, password):
+def login_user(nik, password):
     db = connect()
     cursor = db.cursor()
 
     cursor.execute("""
-        SELECT p.id_pendonor, u.password
+        SELECT p.id_pendonor, u.password, u.id_role
         FROM pendonor p
         JOIN pengguna u ON p.id_pengguna = u.id_pengguna
         WHERE p.nik = %s
@@ -22,12 +22,13 @@ def login_pendonor(nik, password):
     if not result:
         return False, "NIK tidak terdaftar"
 
-    id_pendonor, pw_db = result
+    id_pendonor, pw_db, role_id = result
 
     if password != pw_db:
         return False, "Password salah"
 
-    return True, id_pendonor
+    return True, {"id_pendonor": id_pendonor, "role_id": role_id}
+
 
 
 def register_pendonor(nama, nik, tanggal_lahir, gol_darah, no_hp, password):

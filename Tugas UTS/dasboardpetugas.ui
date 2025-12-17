@@ -717,6 +717,103 @@ QTableWidget::item {
           </item>
          </layout>
         </item>
+        <item>
+         <widget class="QFrame" name="framePendonorHariIni">
+          <property name="styleSheet">
+           <string notr="true">
+QFrame#framePendonorHariIni {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+           </string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QLabel" name="lblPendonorHariIni">
+             <property name="styleSheet">
+              <string notr="true">font-size: 16px; font-weight: bold; color: #750003; padding: 10px;</string>
+             </property>
+             <property name="text">
+              <string>Data Pendonor Hari Ini</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tablePendonorHariIni">
+             <property name="styleSheet">
+              <string notr="true">
+QTableWidget {
+    border: none;
+    background-color: white;
+    gridline-color: #f0f0f0;
+}
+QHeaderView::section {
+    background-color: #750003;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+QTableWidget::item:selected {
+    background-color: #ffeaea;
+    color: #333333;
+}
+              </string>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <column>
+              <property name="text">
+               <string>No</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Nama Pendonor</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>NIK</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Golongan Darah</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Waktu Donor</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Status</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Aksi</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>

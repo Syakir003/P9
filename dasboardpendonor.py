@@ -14,7 +14,7 @@ from USER import connect
 
 class Ui_DonorDashboard(object):
     def setupUi(self, DonorDashboard):
-        self.id_pendonor = None
+        self.id_user = None
         self.window = DonorDashboard
         DonorDashboard.setObjectName("DonorDashboard")
         DonorDashboard.resize(1200, 800)
@@ -502,12 +502,12 @@ class Ui_DonorDashboard(object):
         self.retranslateUi(DonorDashboard)
         QtCore.QMetaObject.connectSlotsByName(DonorDashboard)
         
-    def set_pendonor(self, id_pendonor):
-        self.id_pendonor = id_pendonor
+    def set_pendonor(self, id_user):
+        self.id_user = id_user
         self.load_data()
 
     def load_data(self):
-        if not self.id_pendonor:
+        if not self.id_user:
             return
     
         db = connect()
@@ -517,7 +517,7 @@ class Ui_DonorDashboard(object):
             FROM pendaftaran_donor
             WHERE id_pendonor = %s
               AND status = 'selesai'
-        """, (self.id_pendonor,))
+        """, (self.id_user,))
         total = cursor.fetchone()[0]
         self.valueTotal.setText(str(total))
 
@@ -526,7 +526,7 @@ class Ui_DonorDashboard(object):
             SELECT nama_pendonor, gol_darah, nik
             FROM pendonor
             WHERE id_pendonor = %s
-        """, (self.id_pendonor,))
+        """, (self.id_user,))
 
         data = cursor.fetchone()
         if not data:
@@ -544,7 +544,7 @@ class Ui_DonorDashboard(object):
         self.donor_daftar_window = QtWidgets.QMainWindow()
         self.donor_daftar_ui = daftar_mau_donor.Ui_PendaftaranDonor()
         self.donor_daftar_ui.setupUi(self.donor_daftar_window)
-        self.donor_daftar_ui.set_pendonor(self.id_pendonor)
+        self.donor_daftar_ui.set_pendonor(self.id_user)
         self.donor_daftar_window.show()
         self.window.hide()
         
@@ -553,7 +553,7 @@ class Ui_DonorDashboard(object):
         self.jadwal_window = QtWidgets.QMainWindow()
         self.jadwal_ui = jadwal.Ui_JadwalDonor()
         self.jadwal_ui.setupUi(self.jadwal_window)
-        self.jadwal_ui.set_pendonor(self.id_pendonor)
+        self.jadwal_ui.set_pendonor(self.id_user)
         self.jadwal_window.show()
         self.window.close()
         

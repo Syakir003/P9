@@ -10,8 +10,8 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-from USER import login_pendonor
-from dasboardpendonor import Ui_DonorDashboard
+from USER import login_user
+
 
 
 class Ui_LoginWindow(object):
@@ -236,24 +236,54 @@ class Ui_LoginWindow(object):
         self.retranslateUi(LoginWindow)
         QtCore.QMetaObject.connectSlotsByName(LoginWindow)
         
+    
     def login(self):
         nik = self.inputNIK.text()
         password = self.inputPassword.text()
-        success, result = login_pendonor(nik, password)
+
+        success, result = login_user(nik, password)
+
         if success:
-            QMessageBox.information(self.loginWindow, "Sukses", "Login berhasil!")
-            self.open_dashboard(result)
+            role = result['role_id']
+            id_user = result['id_pendonor']
+
+            if role == 1:  # pendonor
+                self.open_dashboard(id_user)
+            elif role == 3:  # petugas PMI
+                self.open_dashboard_petugas_pmi(id_user)
+            elif role == 2:  # petugas RS
+                self.open_dashboard_petugas_rs(id_user)
         else:
             QMessageBox.warning(self.loginWindow, "Gagal", result)
+
                 
-    def open_dashboard(self, id_pendonor):
+    def open_dashboard(self, id_user):
+        import dasboardpendonor
         self.dashboardWindow = QtWidgets.QMainWindow()
-        self.dashboardUI = Ui_DonorDashboard()
+        self.dashboardUI = dasboardpendonor.Ui_DonorDashboard()
         self.dashboardUI.setupUi(self.dashboardWindow)
 
         # kirim data login
-        self.dashboardUI.set_pendonor(id_pendonor)
+        self.dashboardUI.set_pendonor(id_user)
 
+        self.dashboardWindow.show()
+        self.loginWindow.close()
+        
+    def open_dashboard_petugas_pmi(self, id_user):
+        import dasboardpetugas
+        self.dashboardWindow = QtWidgets.QMainWindow()
+        self.dashboardUI = dasboardpetugas.Ui_MainWindow()
+        self.dashboardUI.setupUi(self.dashboardWindow)
+        self.dashboardUI.set_petugas(id_user)
+        self.dashboardWindow.show()
+        self.loginWindow.close()
+        
+    def open_dashboard_petugas_rs(self, id_user):
+        import dashboardrumahsakit
+        self.dashboardWindow = QtWidgets.QMainWindow()
+        self.dashboardUI = dashboardrumahsakit.Ui_MainWindow()
+        self.dashboardUI.setupUi(self.dashboardWindow)
+        self.dashboardUI.set_petugas(id_user)
         self.dashboardWindow.show()
         self.loginWindow.close()
 
