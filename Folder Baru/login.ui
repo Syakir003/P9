@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>568</width>
+    <height>740</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* ====== GLOBAL ====== */
+QWidget {
+    font-family: 'Segoe UI';
+    color: #FFFFFF;
+}
+
+/* ====== LABEL ====== */
+QLabel {
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Hilangkan underline &amp; warna biru pada QLabel */
+QLabel {
+    text-decoration: none;
+    color: white;
+}
+
+QLineEdit {
+    background: rgba(255,255,255,0.9);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 16px;
+
+    /* simple shadow */
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.35);
+}
+
+QLineEdit:focus {
+    border: 2px solid #D50000;
+    background: rgba(255,255,255,1);
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.45);
+}
+
+/* ====== PUSH BUTTON (Login, Daftar, dll) ====== */
+QPushButton {
+    background-color: #D50000;
+    color: white;
+    border-radius: 14px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+
+    /* Drop shadow simple */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.35);
+}
+
+QPushButton:hover {
+    background-color: #b40000;
+    box-shadow: 0px 6px 14px rgba(0,0,0,0.45);
+}
+#pushButton {
+    background-color: #D50000;
+    color: white;
+    border-radius: 14px;
+    padding: 12px 20px;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+
+    /* Shadow */
+    box-shadow: 0px 5px 16px rgba(0,0,0,0.40);
+}
+
+#pushButton:hover {
+    background-color: #b40000;
+    box-shadow: 0px 7px 20px rgba(0,0,0,0.50);
+    letter-spacing: 1px; /* efek modern */
+}
+
+#pushButton:pressed {
+    background-color: #8e0000;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.30);
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+
+#pushButton_2 {
+    background-color: transparent;
+    border: none;
+    color: #1E88E5;
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+#pushButton_2:hover {
+    color: #64B5F6;
+    cursor: pointer;
+    text-decoration: underline;
+    letter-spacing: 0.5px;
+}
+
+#pushButton_2:pressed {
+    color: #0D47A1;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>566</width>
+     <height>691</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>0</y>
+      <width>526</width>
+      <height>676</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    background-color: rgba(0, 0, 0, 150);
+    border-radius: 20px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>0</y>
+      <width>526</width>
+      <height>676</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+	
+	border-image: url(:/gambar/pexels-charliehelenrobinson-4531306.jpg);
+    background-color: rgba(220, 0, 0, 60);
+    border-radius: 20px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>0</y>
+      <width>526</width>
+      <height>676</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+    background-color: rgba(60, 0, 0, 110);
+    border-radius: 20px;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>70</y>
+      <width>231</width>
+      <height>96</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/blood/pngtree-indonesian-red-cross-pmi-logo-vector-png-image_12258331.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>175</y>
+      <width>96</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>-1</pointsize>
+      <weight>87</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label_5 {
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    /* Shadow agar terlihat jelas di background */
+    text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.45);
+}
+</string>
+    </property>
+    <property name="text">
+     <string>LOGIN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>245</y>
+      <width>96</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>-1</pointsize>
+      <weight>62</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="text">
+     <string>Username:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>280</y>
+      <width>361</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0, 0, 0, 0.50);</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>345</y>
+      <width>96</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>-1</pointsize>
+      <weight>62</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="text">
+     <string>Password:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>460</y>
+      <width>361</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>-1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>510</y>
+      <width>161</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>-1</pointsize>
+      <weight>62</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="text">
+     <string>Belum Punya akun?</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>305</x>
+      <y>500</y>
+      <width>96</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Daftar</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>275</y>
+      <width>361</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>380</y>
+      <width>361</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(0, 0, 0, 0.50);</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>95</x>
+      <y>375</y>
+      <width>361</width>
+      <height>41</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>label_2</zorder>
+   <zorder>label</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>lineEdit</zorder>
+   <zorder>label_7</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>label_8</zorder>
+   <zorder>pushButton_2</zorder>
+   <zorder>lineEdit_3</zorder>
+   <zorder>lineEdit_2</zorder>
+   <zorder>lineEdit_4</zorder>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../../../../Downloads/res.qrc"/>
+  <include location="../../../../../Downloads/omi.qrc"/>
+ </resources>
+ <connections/>
+</ui>

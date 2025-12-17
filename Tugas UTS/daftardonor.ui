@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PendaftaranDonor</class>
+ <widget class="QMainWindow" name="PendaftaranDonor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Pendaftaran Donor - PMI</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f5f5;
+}
+QPushButton {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    opacity: 0.8;
+}
+QFrame {
+    border-radius: 10px;
+}
+QLabel {
+    color: #333333;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="navbar">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QFrame#navbar {
+    background-color: #750003;
+}
+QPushButton {
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    padding: 15px 25px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+       </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white; font-size: 18px; font-weight: bold; padding-left: 20px;</string>
+         </property>
+         <property name="text">
+          <string>PMI DONOR DARAH</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDashboard">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnPendaftaran">
+         <property name="minimumSize">
+          <size>
+           <width>170</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Pendaftaran Donor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnJadwal">
+         <property name="minimumSize">
+          <size>
+           <width>130</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Jadwal Donor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnProfil">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton {
+    background-color: white;
+    border-radius: 25px; 
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    padding: 0px; 
+    font-size: 24px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+          </string>
+         </property>
+         <property name="text">
+          <string>👤</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">QScrollArea { border: none; background-color: #f5f5f5; }</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollContent">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1187</width>
+         <height>900</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>25</number>
+        </property>
+        <property name="leftMargin">
+         <number>30</number>
+        </property>
+        <property name="topMargin">
+         <number>30</number>
+        </property>
+        <property name="rightMargin">
+         <number>30</number>
+        </property>
+        <property name="bottomMargin">
+         <number>30</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="titleLabel">
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #750003;</string>
+          </property>
+          <property name="text">
+           <string>Pendaftaran Donor Darah</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="subtitleLabel">
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; color: #666;</string>
+          </property>
+          <property name="text">
+           <string>Isi formulir di bawah ini untuk mendaftar sebagai pendonor darah</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="formFrame">
+          <property name="styleSheet">
+           <string notr="true">
+QFrame#formFrame {
+    background-color: white;
+    border: 2px solid #750003;
+    padding: 30px;
+}
+QLabel {
+    color: #333333;
+    font-size: 14px;
+}
+QLineEdit, QComboBox, QDateEdit, QTextEdit {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus, QTextEdit:focus {
+    border: 2px solid #750003;
+}
+QComboBox::drop-down {
+    border: none;
+    padding-right: 10px;
+}
+           </string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="sectionData">
+             <property name="styleSheet">
+              <string notr="true">font-size: 18px; font-weight: bold; color: #750003; margin-top: 10px;</string>
+             </property>
+             <property name="text">
+              <string>Data Pribadi</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="rowNamaEmail">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" name="colNama">
+               <item>
+                <widget class="QLabel" name="lblNama">
+                 <property name="text">
+                  <string>Nama Lengkap *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputNama">
+                 <property name="placeholderText">
+                  <string>Masukkan nama lengkap</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="colEmail">
+               <item>
+                <widget class="QLabel" name="lblEmail">
+                 <property name="text">
+                  <string>Email *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputEmail">
+                 <property name="placeholderText">
+                  <string>contoh@email.com</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="rowNIKTelepon">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" name="colNIK">
+               <item>
+                <widget class="QLabel" name="lblNIK">
+                 <property name="text">
+                  <string>NIK *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputNIK">
+                 <property name="placeholderText">
+                  <string>16 digit NIK</string>
+                 </property>
+                 <property name="maxLength">
+                  <number>16</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="colTelepon">
+               <item>
+                <widget class="QLabel" name="lblTelepon">
+                 <property name="text">
+                  <string>No. Telepon *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputTelepon">
+                 <property name="placeholderText">
+                  <string>08xx-xxxx-xxxx</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="rowTanggalJenisKelamin">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" name="colTanggal">
+               <item>
+                <widget class="QLabel" name="lblTanggalLahir">
+                 <property name="text">
+                  <string>Tanggal Lahir *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="inputTanggalLahir">
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                 <property name="displayFormat">
+                  <string>dd/MM/yyyy</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="colJenisKelamin">
+               <item>
+                <widget class="QLabel" name="lblJenisKelamin">
+                 <property name="text">
+                  <string>Jenis Kelamin *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="inputJenisKelamin">
+                 <item>
+                  <property name="text">
+                   <string>Pilih jenis kelamin</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Laki-laki</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Perempuan</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="colAlamat">
+             <item>
+              <widget class="QLabel" name="lblAlamat">
+               <property name="text">
+                <string>Alamat Lengkap *</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="inputAlamat">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="placeholderText">
+                <string>Jalan, RT/RW, Kelurahan, Kecamatan, Kota</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="sectionKesehatan">
+             <property name="styleSheet">
+              <string notr="true">font-size: 18px; font-weight: bold; color: #750003; margin-top: 20px;</string>
+             </property>
+             <property name="text">
+              <string>Data Kesehatan</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="rowGolDarahBerat">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" name="colGolDarah">
+               <item>
+                <widget class="QLabel" name="lblGolDarah">
+                 <property name="text">
+                  <string>Golongan Darah *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="inputGolDarah">
+                 <item>
+                  <property name="text">
+                   <string>Pilih golongan darah</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>A+</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>A-</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>B+</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>B-</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>AB+</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>AB-</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>O+</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>O-</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="colBerat">
+               <item>
+                <widget class="QLabel" name="lblBerat">
+                 <property name="text">
+                  <string>Berat Badan (kg) *</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputBerat">
+                 <property name="placeholderText">
+                  <string>Minimal 45 kg</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="colRiwayat">
+             <item>
+              <widget class="QLabel" name="lblRiwayat">
+               <property name="text">
+                <string>Riwayat Penyakit</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="inputRiwayat">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="placeholderText">
+                <string>Tuliskan riwayat penyakit jika ada (opsional)</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+
+           <item>
+            <widget class="QFrame" name="infoFrame">
+             <property name="styleSheet">
+              <string notr="true">
+QFrame#infoFrame {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 15px;
+}
+              </string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLabel" name="iconInfo">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 24px; border: none;</string>
+                </property>
+                <property name="text">
+                 <string>ℹ️</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="textInfo">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 13px; color: #856404; border: none;</string>
+                </property>
+                <property name="text">
+                 <string>Pastikan Anda telah makan dan minum yang cukup sebelum donor. Bawa KTP/identitas saat datang.</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="buttonLayout">
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnBatal">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QPushButton {
+    background-color: #6c757d;
+    color: white;
+    font-size: 15px;
+    padding: 12px 30px;
+}
+QPushButton:hover {
+    background-color: #5a6268;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Batal</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnDaftar">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>45</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QPushButton {
+    background-color: #750003;
+    color: white;
+    font-size: 15px;
+    padding: 12px 30px;
+}
+QPushButton:hover {
+    background-color: #5a0002;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Daftar Sekarang</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

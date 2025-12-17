@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dashboard PMI - Donor Darah</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f5f5;
+}
+QPushButton {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    opacity: 0.8;
+}
+QFrame {
+    border-radius: 10px;
+}
+QLabel {
+    color: #333333;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="navbar">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QFrame#navbar {
+    background-color: #750003;
+}
+QPushButton {
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    padding: 15px 25px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+       </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white; font-size: 18px; font-weight: bold; padding-left: 20px;</string>
+         </property>
+         <property name="text">
+          <string>PMI DONOR DARAH</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDashboard">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnTransaksi">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Transaksi Darah</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnStok">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Stok Darah</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnValidasi">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Validasi Permintaan</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnLaporan">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Laporan</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="stokDarahPage">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>20</number>
+       </property>
+       <property name="leftMargin">
+        <number>30</number>
+       </property>
+       <property name="topMargin">
+        <number>30</number>
+       </property>
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <property name="bottomMargin">
+        <number>30</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="styleSheet">
+          <string notr="true">font-size: 24px; font-weight: bold; color: #750003;</string>
+         </property>
+         <property name="text">
+          <string>Manajemen Stok Darah</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="filterLayout">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <item>
+          <widget class="QComboBox" name="filterGolongan">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+QComboBox {
+    background-color: white;
+    border: 2px solid #750003;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+QComboBox:hover {
+    border-color: #950005;
+}
+QComboBox::drop-down {
+    border: none;
+}
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #750003;
+    margin-right: 10px;
+}
+            </string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Semua Golongan</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>A+</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>A-</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>B+</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>B-</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>AB+</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>AB-</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>O+</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>O-</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="filterStatus">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+QComboBox {
+    background-color: white;
+    border: 2px solid #750003;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+QComboBox:hover {
+    border-color: #950005;
+}
+QComboBox::drop-down {
+    border: none;
+}
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #750003;
+    margin-right: 10px;
+}
+            </string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Semua Status</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Tersedia</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Kritis</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Segera Kadaluarsa</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="searchBox">
+           <property name="minimumSize">
+            <size>
+             <width>250</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+QLineEdit {
+    background-color: white;
+    border: 2px solid #750003;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #950005;
+}
+            </string>
+           </property>
+           <property name="placeholderText">
+            <string>Cari nomor kantong...</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnRefresh">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+QPushButton {
+    background-color: #750003;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #950005;
+}
+QPushButton:pressed {
+    background-color: #550002;
+}
+            </string>
+           </property>
+           <property name="text">
+            <string>🔄 Refresh</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="summaryLayout">
+         <property name="spacing">
+          <number>15</number>
+         </property>
+         <item>
+          <widget class="QFrame" name="cardTotalStok">
+           <property name="styleSheet">
+            <string notr="true">
+QFrame#cardTotalStok {
+    background-color: white;
+    border: 2px solid #750003;
+}
+            </string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="iconTotal">
+              <property name="styleSheet">
+               <string notr="true">font-size: 36px; color: #750003;</string>
+              </property>
+              <property name="text">
+               <string>📦</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="lblTotalStok">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 12px; color: #666;</string>
+                </property>
+                <property name="text">
+                 <string>Total Stok</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="valueTotalStok">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 24px; font-weight: bold; color: #750003;</string>
+                </property>
+                <property name="text">
+                 <string>328 Kantong</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="cardKritis">
+           <property name="styleSheet">
+            <string notr="true">
+QFrame#cardKritis {
+    background-color: white;
+    border: 2px solid #750003;
+}
+            </string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="iconKritis">
+              <property name="styleSheet">
+               <string notr="true">font-size: 36px; color: #750003;</string>
+              </property>
+              <property name="text">
+               <string>⚠️</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QLabel" name="lblKritis">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 12px; color: #666;</string>
+                </property>
+                <property name="text">
+                 <string>Stok Kritis</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="valueKritis">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 24px; font-weight: bold; color: #d32f2f;</string>
+                </property>
+                <property name="text">
+                 <string>3 Golongan</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="cardKadaluarsa">
+           <property name="styleSheet">
+            <string notr="true">
+QFrame#cardKadaluarsa {
+    background-color: white;
+    border: 2px solid #750003;
+}
+            </string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="iconKadaluarsa">
+              <property name="styleSheet">
+               <string notr="true">font-size: 36px; color: #750003;</string>
+              </property>
+              <property name="text">
+               <string>⏰</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QLabel" name="lblKadaluarsa">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 12px; color: #666;</string>
+                </property>
+                <property name="text">
+                 <string>Segera Kadaluarsa</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="valueKadaluarsa">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 24px; font-weight: bold; color: #f57c00;</string>
+                </property>
+                <property name="text">
+                 <string>12 Kantong</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="tableFrame">
+         <property name="styleSheet">
+          <string notr="true">
+QFrame#tableFrame {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+          </string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QLabel" name="lblTableTitle">
+            <property name="styleSheet">
+             <string notr="true">font-size: 18px; font-weight: bold; color: #750003; padding: 10px;</string>
+            </property>
+            <property name="text">
+             <string>Daftar Stok Darah</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableWidget" name="tableStok">
+            <property name="styleSheet">
+             <string notr="true">
+QTableWidget {
+    border: none;
+    background-color: white;
+    gridline-color: #f0f0f0;
+}
+QHeaderView::section {
+    background-color: #750003;
+    color: white;
+    padding: 12px;
+    border: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+QTableWidget::item {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+QTableWidget::item:selected {
+    background-color: #ffeaea;
+    color: #333333;
+}
+             </string>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <column>
+             <property name="text">
+              <string>No. Kantong</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Golongan Darah</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Rhesus</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tgl Donor</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tgl Kadaluarsa</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Status</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Lokasi Penyimpanan</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Aksi</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

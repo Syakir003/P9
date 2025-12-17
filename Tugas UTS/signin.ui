@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SignUpWindow</class>
+ <widget class="QMainWindow" name="SignUpWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Daftar - PMI Donor Darah</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f5f5;
+}
+QPushButton {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    opacity: 0.8;
+}
+QFrame {
+    border-radius: 10px;
+}
+QLabel {
+    color: #333333;
+}
+QLineEdit, QComboBox, QDateEdit {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: white;
+}
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus {
+    border: 2px solid #750003;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="leftPanel">
+      <property name="minimumSize">
+       <size>
+        <width>420</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>420</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QFrame#leftPanel {
+    background-color: #750003;
+}
+QLabel {
+    color: white;
+}
+       </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>25</number>
+       </property>
+       <property name="leftMargin">
+        <number>40</number>
+       </property>
+       <property name="topMargin">
+        <number>60</number>
+       </property>
+       <property name="rightMargin">
+        <number>40</number>
+       </property>
+       <property name="bottomMargin">
+        <number>60</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="logoIcon">
+         <property name="styleSheet">
+          <string notr="true">font-size: 70px;</string>
+         </property>
+         <property name="text">
+          <string>🩸</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="appTitle">
+         <property name="styleSheet">
+          <string notr="true">font-size: 28px; font-weight: bold;</string>
+         </property>
+         <property name="text">
+          <string>PMI DONOR DARAH</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="tagline">
+         <property name="styleSheet">
+          <string notr="true">font-size: 16px; color: rgba(255, 255, 255, 0.9);</string>
+         </property>
+         <property name="text">
+          <string>Jadilah Pahlawan Kehidupan</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="benefitFrame">
+         <property name="styleSheet">
+          <string notr="true">
+QFrame {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+          </string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="benefit1">
+            <property name="styleSheet">
+             <string notr="true">font-size: 14px; margin-bottom: 10px;</string>
+            </property>
+            <property name="text">
+             <string>✓ Jadwal donor yang fleksibel</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="benefit2">
+            <property name="styleSheet">
+             <string notr="true">font-size: 14px; margin-bottom: 10px;</string>
+            </property>
+            <property name="text">
+             <string>✓ Tracking riwayat donor</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="benefit3">
+            <property name="styleSheet">
+             <string notr="true">font-size: 14px; margin-bottom: 10px;</string>
+            </property>
+            <property name="text">
+             <string>✓ Dapatkan badge pencapaian</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="benefit4">
+            <property name="styleSheet">
+             <string notr="true">font-size: 14px;</string>
+            </property>
+            <property name="text">
+             <string>✓ Notifikasi jadwal donor</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">QScrollArea { border: none; background-color: white; }</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollContent">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>660</width>
+         <height>700</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>50</number>
+        </property>
+        <property name="topMargin">
+         <number>40</number>
+        </property>
+        <property name="rightMargin">
+         <number>50</number>
+        </property>
+        <property name="bottomMargin">
+         <number>40</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="titleLabel">
+          <property name="styleSheet">
+           <string notr="true">font-size: 26px; font-weight: bold; color: #750003; margin-bottom: 8px;</string>
+          </property>
+          <property name="text">
+           <string>Daftar Akun Baru</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="subtitleLabel">
+          <property name="styleSheet">
+           <string notr="true">font-size: 14px; color: #666; margin-bottom: 30px;</string>
+          </property>
+          <property name="text">
+           <string>Lengkapi data diri Anda untuk menjadi donor</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="nameLayout">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="lblNamaDepan">
+              <property name="styleSheet">
+               <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+              </property>
+              <property name="text">
+               <string>Nama Depan *</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="inputNamaDepan">
+              <property name="placeholderText">
+               <string>Nama depan</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="lblNamaBelakang">
+              <property name="styleSheet">
+               <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+              </property>
+              <property name="text">
+               <string>Nama Belakang *</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="inputNamaBelakang">
+              <property name="placeholderText">
+               <string>Nama belakang</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblNIK">
+          <property name="styleSheet">
+           <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+          </property>
+          <property name="text">
+           <string>NIK (Nomor Induk Kependudukan) *</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="inputNIK">
+          <property name="placeholderText">
+           <string>16 digit NIK</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="personalLayout">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="lblTanggalLahir">
+              <property name="styleSheet">
+               <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+              </property>
+              <property name="text">
+               <string>Tanggal Lahir *</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="inputTanggalLahir">
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QLabel" name="lblGolDarah">
+              <property name="styleSheet">
+               <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+              </property>
+              <property name="text">
+               <string>Golongan Darah *</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="inputGolDarah">
+              <item>
+               <property name="text">
+                <string>Pilih golongan darah</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>A+</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>A-</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>B+</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>B-</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>AB+</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>AB-</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>O+</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>O-</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblNoHP">
+          <property name="styleSheet">
+           <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+          </property>
+          <property name="text">
+           <string>Nomor HP *</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="inputNoHP">
+          <property name="placeholderText">
+           <string>08xxxxxxxxxx</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblPassword">
+          <property name="styleSheet">
+           <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+          </property>
+          <property name="text">
+           <string>Password *</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="inputPassword">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Minimal 8 karakter</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblKonfirmPassword">
+          <property name="styleSheet">
+           <string notr="true">font-size: 13px; font-weight: bold; color: #333; margin-top: 15px; margin-bottom: 8px;</string>
+          </property>
+          <property name="text">
+           <string>Konfirmasi Password *</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="inputKonfirmPassword">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Ulangi password</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkSetuju">
+          <property name="styleSheet">
+           <string notr="true">
+QCheckBox {
+    font-size: 13px;
+    color: #666;
+    margin-top: 20px;
+}
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+QCheckBox::indicator:checked {
+    background-color: #750003;
+    border-color: #750003;
+}
+           </string>
+          </property>
+          <property name="text">
+           <string>Saya setuju dengan syarat dan ketentuan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnDaftar">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+QPushButton {
+    background-color: #750003;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+QPushButton:hover {
+    background-color: #a00004;
+}
+QPushButton:pressed {
+    background-color: #5a0002;
+}
+           </string>
+          </property>
+          <property name="text">
+           <string>Daftar</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="loginLayout">
+          <property name="topMargin">
+           <number>20</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="lblSudahPunya">
+            <property name="styleSheet">
+             <string notr="true">font-size: 13px; color: #666;</string>
+            </property>
+            <property name="text">
+             <string>Sudah punya akun?</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnLogin">
+            <property name="styleSheet">
+             <string notr="true">
+QPushButton {
+    background-color: transparent;
+    color: #750003;
+    text-decoration: underline;
+    font-size: 13px;
+    padding: 5px;
+}
+QPushButton:hover {
+    color: #a00004;
+}
+             </string>
+            </property>
+            <property name="text">
+             <string>Masuk di sini</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

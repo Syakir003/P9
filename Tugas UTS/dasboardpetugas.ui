@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dashboard PMI - Donor Darah</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f5f5;
+}
+QPushButton {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    opacity: 0.8;
+}
+QFrame {
+    border-radius: 10px;
+}
+QLabel {
+    color: #333333;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="navbar">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QFrame#navbar {
+    background-color: #750003;
+}
+QPushButton {
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    padding: 15px 25px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+       </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white; font-size: 18px; font-weight: bold; padding-left: 20px;</string>
+         </property>
+         <property name="text">
+          <string>PMI DONOR DARAH</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDashboard">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnTransaksi">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Transaksi Darah</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnStok">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Stok Darah</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnValidasi">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Validasi Permintaan</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnLaporan">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Laporan</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="dashboardPage">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>20</number>
+        </property>
+        <property name="leftMargin">
+         <number>30</number>
+        </property>
+        <property name="topMargin">
+         <number>30</number>
+        </property>
+        <property name="rightMargin">
+         <number>30</number>
+        </property>
+        <property name="bottomMargin">
+         <number>30</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="titleLabel">
+          <property name="styleSheet">
+           <string notr="true">font-size: 24px; font-weight: bold; color: #750003;</string>
+          </property>
+          <property name="text">
+           <string>Dashboard Statistik</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="statsLayout">
+          <property name="spacing">
+           <number>20</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="cardPendonor">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardPendonor {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QLabel" name="iconPendonor">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>👤</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblPendonor">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Total Pendonor Hari Ini</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valuePendonor">
+               <property name="styleSheet">
+                <string notr="true">font-size: 36px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>47</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardKantong">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardKantong {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="iconKantong">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>💉</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblKantong">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Kantong Darah Terkumpul</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valueKantong">
+               <property name="styleSheet">
+                <string notr="true">font-size: 36px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>45</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardStok">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardStok {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QLabel" name="iconStok">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>📦</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblStok">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Total Stok Darah</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valueStok">
+               <property name="styleSheet">
+                <string notr="true">font-size: 36px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>328</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardPermintaan">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardPermintaan {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QLabel" name="iconPermintaan">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>📋</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblPermintaan">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Permintaan Pending</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valuePermintaan">
+               <property name="styleSheet">
+                <string notr="true">font-size: 36px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>12</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="chartsLayout">
+          <property name="spacing">
+           <number>20</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="chartGolongan">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#chartGolongan {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QLabel" name="lblChartGolongan">
+               <property name="styleSheet">
+                <string notr="true">font-size: 16px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>Stok per Golongan Darah</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="lblA">
+                 <property name="styleSheet">
+                  <string notr="true">font-size: 14px; font-weight: bold;</string>
+                 </property>
+                 <property name="text">
+                  <string>A</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QProgressBar" name="progressA">
+                 <property name="styleSheet">
+                  <string notr="true">
+QProgressBar {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+QProgressBar::chunk {
+    background-color: #750003;
+    border-radius: 4px;
+}
+                  </string>
+                 </property>
+                 <property name="value">
+                  <number>85</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="valueA">
+                 <property name="text">
+                  <string>85 kantong</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="lblB">
+                 <property name="styleSheet">
+                  <string notr="true">font-size: 14px; font-weight: bold;</string>
+                 </property>
+                 <property name="text">
+                  <string>B</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QProgressBar" name="progressB">
+                 <property name="styleSheet">
+                  <string notr="true">
+QProgressBar {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+QProgressBar::chunk {
+    background-color: #750003;
+    border-radius: 4px;
+}
+                  </string>
+                 </property>
+                 <property name="value">
+                  <number>72</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLabel" name="valueB">
+                 <property name="text">
+                  <string>72 kantong</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="lblO">
+                 <property name="styleSheet">
+                  <string notr="true">font-size: 14px; font-weight: bold;</string>
+                 </property>
+                 <property name="text">
+                  <string>O</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QProgressBar" name="progressO">
+                 <property name="styleSheet">
+                  <string notr="true">
+QProgressBar {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+QProgressBar::chunk {
+    background-color: #750003;
+    border-radius: 4px;
+}
+                  </string>
+                 </property>
+                 <property name="value">
+                  <number>95</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLabel" name="valueO">
+                 <property name="text">
+                  <string>95 kantong</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="lblAB">
+                 <property name="styleSheet">
+                  <string notr="true">font-size: 14px; font-weight: bold;</string>
+                 </property>
+                 <property name="text">
+                  <string>AB</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QProgressBar" name="progressAB">
+                 <property name="styleSheet">
+                  <string notr="true">
+QProgressBar {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+QProgressBar::chunk {
+    background-color: #750003;
+    border-radius: 4px;
+}
+                  </string>
+                 </property>
+                 <property name="value">
+                  <number>76</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="valueAB">
+                 <property name="text">
+                  <string>76 kantong</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="chartAktivitas">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#chartAktivitas {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLabel" name="lblChartAktivitas">
+               <property name="styleSheet">
+                <string notr="true">font-size: 16px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>Aktivitas Donor 7 Hari Terakhir</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="tableAktivitas">
+               <property name="styleSheet">
+                <string notr="true">
+QTableWidget {
+    border: none;
+    background-color: white;
+    gridline-color: #f0f0f0;
+}
+QHeaderView::section {
+    background-color: #750003;
+    color: white;
+    padding: 8px;
+    border: none;
+    font-weight: bold;
+}
+QTableWidget::item {
+    padding: 8px;
+}
+                </string>
+               </property>
+               <column>
+                <property name="text">
+                 <string>Hari</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Pendonor</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Kantong</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

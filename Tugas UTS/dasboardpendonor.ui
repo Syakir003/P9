@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DonorDashboard</class>
+ <widget class="QMainWindow" name="DonorDashboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dashboard Pendonor - PMI</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f5f5;
+}
+QPushButton {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    opacity: 0.8;
+}
+QFrame {
+    border-radius: 10px;
+}
+QLabel {
+    color: #333333;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="navbar">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QFrame#navbar {
+    background-color: #750003;
+}
+QPushButton {
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    padding: 15px 25px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+       </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white; font-size: 18px; font-weight: bold; padding-left: 20px;</string>
+         </property>
+         <property name="text">
+          <string>PMI DONOR DARAH</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDashboard">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnPendaftaran">
+         <property name="minimumSize">
+          <size>
+           <width>170</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Pendaftaran Donor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnJadwal">
+         <property name="minimumSize">
+          <size>
+           <width>130</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Jadwal Donor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnProfil">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	image: url(:/blood/account.png);
+    background-color: white;
+    /* Radius 25px -&gt; Ukuran tombol minimal 50x50 agar jadi lingkaran */
+    border-radius: 25px; 
+    
+    /* Atur lebar dan tinggi agar menjadi lingkaran sempurna */
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    
+    /* Padding diatur ke 0 seperti permintaan Anda */
+    padding: 0px; 
+    font-size: 24px;
+    /* Konten (ikon/teks) default-nya sudah di tengah */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}QPushButton {
+    background-color: white;
+    /* Radius 25px -&gt; Ukuran tombol minimal 50x50 agar jadi lingkaran */
+    border-radius: 25px; 
+    
+    /* Atur lebar dan tinggi agar menjadi lingkaran sempurna */
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    
+    /* Padding diatur ke 0 seperti permintaan Anda */
+    padding: 0px; 
+    font-size: 24px;
+    /* Konten (ikon/teks) default-nya sudah di tengah */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">QScrollArea { border: none; background-color: #f5f5f5; }</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollContent">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1187</width>
+         <height>833</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>25</number>
+        </property>
+        <property name="leftMargin">
+         <number>30</number>
+        </property>
+        <property name="topMargin">
+         <number>30</number>
+        </property>
+        <property name="rightMargin">
+         <number>30</number>
+        </property>
+        <property name="bottomMargin">
+         <number>30</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="welcomeLabel">
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #750003;</string>
+          </property>
+          <property name="text">
+           <string>Selamat Datang, Donor Hero!</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="profileCard">
+          <property name="styleSheet">
+           <string notr="true">
+QFrame#profileCard {
+    background-color: white;
+    border: 2px solid #750003;
+    padding: 20px;
+}
+           </string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="avatarLabel">
+             <property name="minimumSize">
+              <size>
+               <width>80</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>80</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QLabel {
+    background-color: #750003;
+    border-radius: 40px;
+    color: white;
+    font-size: 40px;
+}
+              </string>
+             </property>
+             <property name="text">
+              <string>👤</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QLabel" name="namaLabel">
+               <property name="styleSheet">
+                <string notr="true">font-size: 20px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>Ahmad Rifai</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="golDarahLabel">
+               <property name="styleSheet">
+                <string notr="true">font-size: 16px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Golongan Darah: O+ | NIK: 3507xxxxxx</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QLabel" name="lblStatus">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Status Donor</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="statusDonor">
+               <property name="styleSheet">
+                <string notr="true">
+QLabel {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Aktif</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="statsLayout">
+          <property name="spacing">
+           <number>20</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="cardTotalDonor">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardTotalDonor {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <widget class="QLabel" name="iconTotal">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>💉</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblTotal">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Total Donor</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valueTotal">
+               <property name="styleSheet">
+                <string notr="true">font-size: 36px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>12</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="subTotal">
+               <property name="styleSheet">
+                <string notr="true">font-size: 12px; color: #999;</string>
+               </property>
+               <property name="text">
+                <string>kali</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardJumlahDarah">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardJumlahDarah {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QLabel" name="iconJumlah">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>🩸</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblJumlah">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Total Darah Terdonasi</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valueJumlah">
+               <property name="styleSheet">
+                <string notr="true">font-size: 36px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>6000</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="subJumlah">
+               <property name="styleSheet">
+                <string notr="true">font-size: 12px; color: #999;</string>
+               </property>
+               <property name="text">
+                <string>ml</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardTerakhir">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardTerakhir {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QLabel" name="iconTerakhir">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>📅</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblTerakhir">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Donor Terakhir</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valueTerakhir">
+               <property name="styleSheet">
+                <string notr="true">font-size: 20px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>15 Agu 2024</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="subTerakhir">
+               <property name="styleSheet">
+                <string notr="true">font-size: 12px; color: #999;</string>
+               </property>
+               <property name="text">
+                <string>103 hari yang lalu</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardBerikutnya">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#cardBerikutnya {
+    background-color: white;
+    border: 2px solid #750003;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLabel" name="iconBerikutnya">
+               <property name="styleSheet">
+                <string notr="true">font-size: 48px; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>⏰</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblBerikutnya">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Donor Berikutnya</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="valueBerikutnya">
+               <property name="styleSheet">
+                <string notr="true">font-size: 20px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>26 Nov 2024</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="subBerikutnya">
+               <property name="styleSheet">
+                <string notr="true">font-size: 12px; color: #28a745; font-weight: bold;</string>
+               </property>
+               <property name="text">
+                <string>Siap donor!</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="contentLayout">
+          <property name="spacing">
+           <number>20</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="riwayatFrame">
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#riwayatFrame {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <widget class="QLabel" name="lblRiwayat">
+               <property name="styleSheet">
+                <string notr="true">font-size: 18px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>Riwayat Donor</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="tableRiwayat">
+               <property name="styleSheet">
+                <string notr="true">
+QTableWidget {
+    border: none;
+    background-color: white;
+    gridline-color: #f0f0f0;
+}
+QHeaderView::section {
+    background-color: #750003;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+}
+QTableWidget::item {
+    padding: 10px;
+}
+                </string>
+               </property>
+               <column>
+                <property name="text">
+                 <string>Tanggal</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Lokasi</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Volume (ml)</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Status</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="pencapaianFrame">
+            <property name="minimumSize">
+             <size>
+              <width>350</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>350</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+QFrame#pencapaianFrame {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+             </string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QLabel" name="lblPencapaian">
+               <property name="styleSheet">
+                <string notr="true">font-size: 18px; font-weight: bold; color: #750003;</string>
+               </property>
+               <property name="text">
+                <string>Pencapaian</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="badgeFrame1">
+               <property name="styleSheet">
+                <string notr="true">
+QFrame {
+    background-color: #fff8e1;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 10px;
+}
+                </string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QLabel" name="badgeIcon1">
+                  <property name="styleSheet">
+                   <string notr="true">font-size: 40px; border: none;</string>
+                  </property>
+                  <property name="text">
+                   <string>🏆</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <item>
+                   <widget class="QLabel" name="badgeTitle1">
+                    <property name="styleSheet">
+                     <string notr="true">font-size: 14px; font-weight: bold; color: #333; border: none;</string>
+                    </property>
+                    <property name="text">
+                     <string>Donor Sejati</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="badgeDesc1">
+                    <property name="styleSheet">
+                     <string notr="true">font-size: 12px; color: #666; border: none;</string>
+                    </property>
+                    <property name="text">
+                     <string>10+ kali donor</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="badgeFrame2">
+               <property name="styleSheet">
+                <string notr="true">
+QFrame {
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+    padding: 10px;
+}
+                </string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QLabel" name="badgeIcon2">
+                  <property name="styleSheet">
+                   <string notr="true">font-size: 40px; border: none;</string>
+                  </property>
+                  <property name="text">
+                   <string>⭐</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                  <item>
+                   <widget class="QLabel" name="badgeTitle2">
+                    <property name="styleSheet">
+                     <string notr="true">font-size: 14px; font-weight: bold; color: #333; border: none;</string>
+                    </property>
+                    <property name="text">
+                     <string>Pahlawan Kehidupan</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="badgeDesc2">
+                    <property name="styleSheet">
+                     <string notr="true">font-size: 12px; color: #666; border: none;</string>
+                    </property>
+                    <property name="text">
+                     <string>5+ liter darah</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblProgress">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #750003; margin-top: 10px;</string>
+               </property>
+               <property name="text">
+                <string>Progress Berikutnya</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="progressTitle">
+               <property name="styleSheet">
+                <string notr="true">font-size: 13px; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Donor Champion (15 kali)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QProgressBar" name="progressBadge">
+               <property name="styleSheet">
+                <string notr="true">
+QProgressBar {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+    height: 25px;
+}
+QProgressBar::chunk {
+    background-color: #750003;
+    border-radius: 3px;
+}
+                </string>
+               </property>
+               <property name="value">
+                <number>80</number>
+               </property>
+               <property name="format">
+                <string>12/15</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../../../../Downloads/res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

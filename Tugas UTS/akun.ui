@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProfilDonor</class>
+ <widget class="QMainWindow" name="ProfilDonor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Profil Pendonor - PMI</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QMainWindow {
+    background-color: #f5f5f5;
+}
+QPushButton {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    opacity: 0.8;
+}
+QFrame {
+    border-radius: 10px;
+}
+QLabel {
+    color: #333333;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="navbar">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QFrame#navbar {
+    background-color: #750003;
+}
+QPushButton {
+    color: white;
+    background-color: transparent;
+    text-align: left;
+    padding: 15px 25px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+       </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: white; font-size: 18px; font-weight: bold; padding-left: 20px;</string>
+         </property>
+         <property name="text">
+          <string>PMI DONOR DARAH</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDashboard">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Dashboard</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnPendaftaran">
+         <property name="minimumSize">
+          <size>
+           <width>170</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Pendaftaran Donor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnJadwal">
+         <property name="minimumSize">
+          <size>
+           <width>130</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Jadwal Donor</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnProfil">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton {
+    background-color: white;
+    border-radius: 25px;
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    padding: 0px;
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+          </string>
+         </property>
+         <property name="text">
+          <string>👤</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">QScrollArea { border: none; background-color: #f5f5f5; }</string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollContent">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1187</width>
+         <height>750</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>25</number>
+        </property>
+        <property name="leftMargin">
+         <number>30</number>
+        </property>
+        <property name="topMargin">
+         <number>30</number>
+        </property>
+        <property name="rightMargin">
+         <number>30</number>
+        </property>
+        <property name="bottomMargin">
+         <number>30</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="pageTitle">
+          <property name="styleSheet">
+           <string notr="true">font-size: 28px; font-weight: bold; color: #750003;</string>
+          </property>
+          <property name="text">
+           <string>Profil Pendonor</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="photoCard">
+          <property name="styleSheet">
+           <string notr="true">
+QFrame#photoCard {
+    background-color: white;
+    border: 2px solid #750003;
+    padding: 20px;
+}
+           </string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="photoLabel">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QLabel {
+    background-color: #750003;
+    border-radius: 60px;
+    color: white;
+    font-size: 60px;
+}
+              </string>
+             </property>
+             <property name="text">
+              <string>👤</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnGantiFoto">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>150</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+QPushButton {
+    background-color: #750003;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+QPushButton:hover {
+    background-color: #5a0002;
+}
+              </string>
+             </property>
+             <property name="text">
+              <string>Ganti Foto</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="dataFrame">
+          <property name="styleSheet">
+           <string notr="true">
+QFrame#dataFrame {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+           </string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QLabel" name="lblDataPribadi">
+             <property name="styleSheet">
+              <string notr="true">font-size: 18px; font-weight: bold; color: #750003; margin-bottom: 10px;</string>
+             </property>
+             <property name="text">
+              <string>Data Pribadi</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QFormLayout" name="formLayout">
+             <property name="horizontalSpacing">
+              <number>20</number>
+             </property>
+             <property name="verticalSpacing">
+              <number>15</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="lblNama">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Nama Lengkap</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="inputNama">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+QLineEdit:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Ahmad Rifai</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="lblNIK">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>NIK</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="inputNIK">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+QLineEdit:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>3507012345678901</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="lblTglLahir">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Tanggal Lahir</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="inputTglLahir">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+QLineEdit:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>15 Januari 1995</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="lblJenisKelamin">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Jenis Kelamin</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="inputJenisKelamin">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+QLineEdit:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Laki-laki</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="lblGolDarah">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Golongan Darah</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLineEdit" name="inputGolDarah">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+QLineEdit:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>O+</string>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="lblTelepon">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>No. Telepon</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="inputTelepon">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>081234567890</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="lblEmail">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Email</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="inputEmail">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QLineEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QLineEdit:focus {
+    border-color: #750003;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>ahmadrifai@email.com</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="lblAlamat">
+               <property name="styleSheet">
+                <string notr="true">font-size: 14px; font-weight: bold; color: #666;</string>
+               </property>
+               <property name="text">
+                <string>Alamat</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QTextEdit" name="inputAlamat">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>80</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QTextEdit {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: white;
+    font-size: 14px;
+}
+QTextEdit:focus {
+    border-color: #750003;
+}
+                </string>
+               </property>
+               <property name="html">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jl. Soekarno Hatta No. 123, Malang, Jawa Timur 65141&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnBatal">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QPushButton {
+    background-color: #ddd;
+    color: #333;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+QPushButton:hover {
+    background-color: #ccc;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Batal</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnSimpan">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">
+QPushButton {
+    background-color: #750003;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+QPushButton:hover {
+    background-color: #5a0002;
+}
+                </string>
+               </property>
+               <property name="text">
+                <string>Simpan Perubahan</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
