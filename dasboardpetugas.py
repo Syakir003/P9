@@ -456,6 +456,7 @@ class Ui_MainWindow(object):
         self.btnStok.clicked.connect(self.buka_stok)
         self.btnTransaksi.clicked.connect(self.buka_transaksi)
 
+
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -495,7 +496,8 @@ class Ui_MainWindow(object):
             self.load_pendaftaran_pending()
         elif msg == QtWidgets.QMessageBox.No:
             update_status_pendaftaran(id_daftar, "ditolak")
-            self.load_pendaftaran_pending()
+        
+        self.load_pendaftaran_pending()
 
 
         

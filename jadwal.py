@@ -338,6 +338,7 @@ class Ui_JadwalDonor(object):
         self.iconInfo.setText(_translate("JadwalDonor", "ℹ️"))
         self.lblInfoTitle.setText(_translate("JadwalDonor", "Informasi Penting"))
         self.lblInfoDesc.setText(_translate("JadwalDonor", "Pastikan Anda sudah istirahat cukup, makan bergizi, dan dalam kondisi sehat sebelum donor darah."))
+        self.load_jadwal()
 
 
 if __name__ == "__main__":

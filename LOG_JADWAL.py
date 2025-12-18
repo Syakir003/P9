@@ -30,3 +30,19 @@ def get_jadwal_donor():
     db.close()
     return data
 
+
+def buat_jadwal_donor(id_pendonor, tanggal, waktu, lokasi):
+    db = connect()
+    cur = db.cursor()
+
+    cur.execute("""
+        INSERT INTO jadwal_donor
+        (id_pendonor, tanggal_donor, waktu_donor, lokasi, status)
+        VALUES (%s, %s, %s, %s, 'terjadwal')
+    """, (id_pendonor, tanggal, waktu, lokasi))
+
+    db.commit()
+    cur.close()
+    db.close()
+
+

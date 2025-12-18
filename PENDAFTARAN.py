@@ -43,31 +43,45 @@ def update_status_pendaftaran(id_pendaftaran, status):
     db.close()
     
     
+from datetime import date, time
+
 def terima_pendaftaran(id_daftar):
     db = connect()
     cur = db.cursor()
 
-    # Ambil id_pendonor
+    # 1. Ambil id_pendonor
     cur.execute("""
         SELECT id_pendonor
         FROM pendaftaran_donor
         WHERE id_daftar = %s
     """, (id_daftar,))
-    id_pendonor = cur.fetchone()[0]
+    
+    result = cur.fetchone()
+    if not result:
+        cur.close()
+        db.close()
+        return
 
-    # Update status pendaftaran
+    id_pendonor = result[0]
+
+    # 2. Update status pendaftaran
     cur.execute("""
         UPDATE pendaftaran_donor
         SET status = 'diterima'
         WHERE id_daftar = %s
     """, (id_daftar,))
 
-    # Auto buat jadwal donor (contoh: H+1 jam 08:00)
+    # 3. Insert jadwal donor
     cur.execute("""
         INSERT INTO jadwal_donor
-        (id_pendonor, tanggal_donor, waktu_donor, lokasi)
-        VALUES (%s, DATE_ADD(CURDATE(), INTERVAL 1 DAY), '08:00:00', 'PMI Kota')
-    """, (id_pendonor,))
+        (id_pendonor, tanggal_donor, waktu_donor, lokasi, status)
+        VALUES (%s, %s, %s, %s, 'terjadwal')
+    """, (
+        id_pendonor,
+        date.today(),          # tanggal otomatis
+        time(9, 0),            # jam default 09:00
+        "PMI Kota"             # lokasi default
+    ))
 
     db.commit()
     cur.close()
