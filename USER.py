@@ -22,12 +22,12 @@ def login_user(nik, password):
     if not result:
         return False, "NIK tidak terdaftar"
 
-    id_pendonor, pw_db, role_id = result
+    id_pengguna, pw_db, role_id = result
 
     if password != pw_db:
         return False, "Password salah"
 
-    return True, {"id_pendonor": id_pendonor, "role_id": role_id}
+    return True, {"id_pendonor": id_pengguna, "role_id": role_id}
 
 
 
@@ -81,3 +81,15 @@ def register_pendonor(nama, nik, tanggal_lahir, gol_darah, no_hp, password):
     except Exception as e:
         db.rollback()
         return f"Gagal registrasi: {e}"
+    
+    
+def get_id_rs_by_pengguna(id_pengguna):
+    db = connect()
+    cursor = db.cursor()
+    cursor.execute(
+        "SELECT id_rs FROM rumah_sakit WHERE id_pengguna = %s",
+        (id_pengguna,)
+    )
+    row = cursor.fetchone()
+    return row[0] if row else None
+

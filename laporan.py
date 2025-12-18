@@ -14,6 +14,9 @@ from DARAH import *
 
 
 class Ui_MainWindow(object):
+    def set_petugas(self, id_user):
+        self.id_petugas = id_user
+        
     def setupUi(self, MainWindow):
         self.Mainwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
@@ -321,7 +324,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.frameStokDetail)
         self.verticalLayout.addWidget(self.stokPage)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.load_stok_data()
         self.btnRefresh.clicked.connect(self.load_stok_data)
         self.btnValidasi.clicked.connect(self.tampilkan_validasi)
         self.btnTransaksi.clicked.connect(self.tampil_transaksi)
@@ -332,7 +334,8 @@ class Ui_MainWindow(object):
     def load_stok_data(self):
         self.valueTotalStok.setText(f"{get_total_stok()} Kantong")
         self.valueKadaluarsa.setText(f"{get_stok_kadaluarsa()} Kantong")
-        items = get_all_stok()
+        self.valueStokKritis.setText(f"{get_stok_kritis()} Golongan")
+        items = laporan_darah()
         self.tableStok.setRowCount(0)
         for row_number, row_data in enumerate(items):
             self.tableStok.insertRow(row_number)
@@ -354,6 +357,15 @@ class Ui_MainWindow(object):
         self.transaksiUI = transaksidarah.Ui_MainWindow()
         self.transaksiUI.setupUi(self.transaksiWindow)
         self.transaksiWindow.show()
+        
+    def balik_dashboard(self):
+        import dasboardpetugas
+        self.dashboardwindow = QtWidgets.QMainWindow()
+        self.ui = dasboardpetugas.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.dashboardwindow)
+        self.dashboardwindow.show()
+        self.Mainwindow.close()
 
 
     def retranslateUi(self, MainWindow):
@@ -396,6 +408,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Kadaluarsa <7 Hari"))
         item = self.tableStok.horizontalHeaderItem(5)
         item.setText(_translate("MainWindow", "Terakhir Update"))
+        self.load_stok_data()
 
 
 if __name__ == "__main__":

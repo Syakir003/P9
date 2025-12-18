@@ -11,6 +11,7 @@
 #from USER import connect
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+from LOG_JADWAL import get_jadwal_donor
 
 
 
@@ -288,6 +289,23 @@ class Ui_JadwalDonor(object):
         self.dashboard_ui.set_pendonor(self.id_pendonor)
         self.dashboardwindow.show()
         self.window.close()
+        
+    def load_jadwal(self):
+        data = get_jadwal_donor()
+        self.tableJadwal.setRowCount(0)
+
+        for row_idx, row in enumerate(data):
+            id_jadwal, nama, gol, tanggal, waktu, lokasi, status = row
+
+            self.tableJadwal.insertRow(row_idx)
+            self.tableJadwal.setItem(row_idx, 0, QtWidgets.QTableWidgetItem(str(row_idx + 1)))
+            self.tableJadwal.setItem(row_idx, 1, QtWidgets.QTableWidgetItem(nama))
+            self.tableJadwal.setItem(row_idx, 2, QtWidgets.QTableWidgetItem(gol))
+            self.tableJadwal.setItem(row_idx, 3, QtWidgets.QTableWidgetItem(str(tanggal)))
+            self.tableJadwal.setItem(row_idx, 4, QtWidgets.QTableWidgetItem(str(waktu)))
+            self.tableJadwal.setItem(row_idx, 5, QtWidgets.QTableWidgetItem(lokasi))
+            self.tableJadwal.setItem(row_idx, 6, QtWidgets.QTableWidgetItem(status))
+
 
     def retranslateUi(self, JadwalDonor):
         _translate = QtCore.QCoreApplication.translate

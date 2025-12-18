@@ -9,6 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PENDAFTARAN import ( 
+        get_pendaftaran_pending,
+        update_status_pendaftaran,
+        terima_pendaftaran
+)
 
 
 
@@ -17,6 +22,7 @@ class Ui_MainWindow(object):
         self.id_petugas = id_user
         
     def setupUi(self, MainWindow):
+        self.mainwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
         MainWindow.setStyleSheet("\n"
@@ -445,10 +451,89 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.dashboardPage)
         self.verticalLayout.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.btnValidasi.clicked.connect(self.buka_validasi)
+        self.btnLaporan.clicked.connect(self.buka_laporan)
+        self.btnStok.clicked.connect(self.buka_stok)
+        self.btnTransaksi.clicked.connect(self.buka_transaksi)
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+    def load_pendaftaran_pending(self):
+        data = get_pendaftaran_pending()
+        self.tablePendonorHariIni.setRowCount(0)
+
+        for row_idx, row in enumerate(data):
+            id_daftar, nama, nik, gol, waktu, status = row
+            self.tablePendonorHariIni.insertRow(row_idx)
+
+            self.tablePendonorHariIni.setItem(row_idx, 0, QtWidgets.QTableWidgetItem(str(row_idx + 1)))
+            self.tablePendonorHariIni.setItem(row_idx, 1, QtWidgets.QTableWidgetItem(nama))
+            self.tablePendonorHariIni.setItem(row_idx, 2, QtWidgets.QTableWidgetItem(nik))
+            self.tablePendonorHariIni.setItem(row_idx, 3, QtWidgets.QTableWidgetItem(gol))
+            self.tablePendonorHariIni.setItem(row_idx, 4, QtWidgets.QTableWidgetItem(str(waktu)))
+            self.tablePendonorHariIni.setItem(row_idx, 5, QtWidgets.QTableWidgetItem(status))
+
+            btn = QtWidgets.QPushButton("Validasi")
+            btn.clicked.connect(
+                lambda _, pid=id_daftar: self.validasi_donor(pid)
+            )
+            self.tablePendonorHariIni.setCellWidget(row_idx, 6, btn)
+            
+            
+    def validasi_donor(self, id_daftar):
+        msg = QtWidgets.QMessageBox.question(
+            self.mainwindow,
+            "Konfirmasi",
+            "Setujui pendaftaran donor ini?",
+            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No
+        )
+
+        if msg == QtWidgets.QMessageBox.Yes:
+            terima_pendaftaran(id_daftar)
+            self.load_pendaftaran_pending()
+        elif msg == QtWidgets.QMessageBox.No:
+            update_status_pendaftaran(id_daftar, "ditolak")
+            self.load_pendaftaran_pending()
+
+
+        
+    def buka_validasi(self):
+        import validasi
+        self.validasi_window = QtWidgets.QMainWindow()
+        self.ui = validasi.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.validasi_window)
+        self.validasi_window.show()
+        self.mainwindow.hide()
+        
+    def buka_laporan(self):
+        import laporan
+        self.laporan_window = QtWidgets.QMainWindow()
+        self.ui = laporan.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.laporan_window)
+        self.laporan_window.show()
+        self.mainwindow.hide()
+        
+    def buka_stok(self):
+        import stokdarah
+        self.stok_window = QtWidgets.QMainWindow()
+        self.ui = stokdarah.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.stok_window)
+        self.stok_window.show()
+        self.mainwindow.hide()
+        
+    def buka_transaksi(self):
+        import transaksidarah
+        self.transaksi_window = QtWidgets.QMainWindow()
+        self.ui = transaksidarah.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.transaksi_window)
+        self.transaksi_window.show()
+        self.mainwindow.hide()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -503,6 +588,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Status"))
         item = self.tablePendonorHariIni.horizontalHeaderItem(6)
         item.setText(_translate("MainWindow", "Aksi"))
+        self.load_pendaftaran_pending()
 
 
 if __name__ == "__main__":

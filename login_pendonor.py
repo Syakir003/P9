@@ -14,11 +14,12 @@ from USER import login_user
 
 
 
+
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
         self.loginWindow = LoginWindow
         LoginWindow.setObjectName("LoginWindow")
-        LoginWindow.resize(1000, 650)
+        LoginWindow.resize(1000, 758)
         LoginWindow.setStyleSheet("\n"
 "QMainWindow {\n"
 "    background-color: #f5f5f5;\n"
@@ -104,37 +105,89 @@ class Ui_LoginWindow(object):
 "       ")
         self.rightPanel.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.rightPanel.setObjectName("rightPanel")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.rightPanel)
-        self.verticalLayout_2.setContentsMargins(60, 80, 60, 80)
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.welcomeLabel = QtWidgets.QLabel(self.rightPanel)
+        self.welcomeLabel.setGeometry(QtCore.QRect(60, 80, 252, 44))
         self.welcomeLabel.setStyleSheet("font-size: 28px; font-weight: bold; color: #750003; margin-bottom: 10px;")
         self.welcomeLabel.setObjectName("welcomeLabel")
-        self.verticalLayout_2.addWidget(self.welcomeLabel)
         self.subtitleLabel = QtWidgets.QLabel(self.rightPanel)
+        self.subtitleLabel.setGeometry(QtCore.QRect(60, 124, 290, 57))
         self.subtitleLabel.setStyleSheet("font-size: 14px; color: #666; margin-bottom: 40px;")
         self.subtitleLabel.setObjectName("subtitleLabel")
-        self.verticalLayout_2.addWidget(self.subtitleLabel)
         self.lblNIK = QtWidgets.QLabel(self.rightPanel)
+        self.lblNIK.setGeometry(QtCore.QRect(60, 181, 168, 45))
         self.lblNIK.setStyleSheet("font-size: 14px; font-weight: bold; color: #333; margin-top: 20px; margin-bottom: 8px;")
         self.lblNIK.setObjectName("lblNIK")
-        self.verticalLayout_2.addWidget(self.lblNIK)
         self.inputNIK = QtWidgets.QLineEdit(self.rightPanel)
+        self.inputNIK.setGeometry(QtCore.QRect(60, 226, 386, 47))
         self.inputNIK.setObjectName("inputNIK")
-        self.verticalLayout_2.addWidget(self.inputNIK)
         self.lblPassword = QtWidgets.QLabel(self.rightPanel)
+        self.lblPassword.setGeometry(QtCore.QRect(60, 273, 76, 45))
         self.lblPassword.setStyleSheet("font-size: 14px; font-weight: bold; color: #333; margin-top: 20px; margin-bottom: 8px;")
         self.lblPassword.setObjectName("lblPassword")
-        self.verticalLayout_2.addWidget(self.lblPassword)
         self.inputPassword = QtWidgets.QLineEdit(self.rightPanel)
+        self.inputPassword.setGeometry(QtCore.QRect(60, 318, 386, 47))
         self.inputPassword.setEchoMode(QtWidgets.QLineEdit.Password)
         self.inputPassword.setObjectName("inputPassword")
-        self.verticalLayout_2.addWidget(self.inputPassword)
-        self.optionsLayout = QtWidgets.QHBoxLayout()
-        self.optionsLayout.setContentsMargins(-1, 15, -1, -1)
+        self.btnLogin = QtWidgets.QPushButton(self.rightPanel)
+        self.btnLogin.setGeometry(QtCore.QRect(60, 407, 380, 81))
+        self.btnLogin.setMinimumSize(QtCore.QSize(0, 45))
+        self.btnLogin.setStyleSheet("\n"
+"QPushButton {\n"
+"    background-color: #750003;\n"
+"    color: white;\n"
+"    font-size: 16px;\n"
+"    font-weight: bold;\n"
+"    margin-top: 25px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #a00004;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #5a0002;\n"
+"}\n"
+"          ")
+        self.btnLogin.setObjectName("btnLogin")
+        self.registerFrame = QtWidgets.QFrame(self.rightPanel)
+        self.registerFrame.setGeometry(QtCore.QRect(65, 530, 380, 156))
+        self.registerFrame.setStyleSheet("\n"
+"QFrame {\n"
+"    background-color: #f9f9f9;\n"
+"    border: 1px solid #e0e0e0;\n"
+"    border-radius: 8px;\n"
+"    padding: 20px;\n"
+"}\n"
+"          ")
+        self.registerFrame.setObjectName("registerFrame")
+        self.lblBelumPunya = QtWidgets.QLabel(self.registerFrame)
+        self.lblBelumPunya.setGeometry(QtCore.QRect(27, 27, 326, 58))
+        self.lblBelumPunya.setStyleSheet("font-size: 13px; color: #666; text-align: center;")
+        self.lblBelumPunya.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblBelumPunya.setObjectName("lblBelumPunya")
+        self.btnDaftar = QtWidgets.QPushButton(self.registerFrame)
+        self.btnDaftar.setGeometry(QtCore.QRect(27, 89, 326, 61))
+        self.btnDaftar.setMinimumSize(QtCore.QSize(0, 40))
+        self.btnDaftar.setStyleSheet("\n"
+"QPushButton {\n"
+"    background-color: white;\n"
+"    color: #750003;\n"
+"    border: 2px solid #750003;\n"
+"    font-size: 15px;\n"
+"    font-weight: bold;\n"
+"    margin-top: 10px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #750003;\n"
+"    color: white;\n"
+"}\n"
+"             ")
+        self.btnDaftar.setObjectName("btnDaftar")
+        self.layoutWidget = QtWidgets.QWidget(self.rightPanel)
+        self.layoutWidget.setGeometry(QtCore.QRect(60, 365, 386, 42))
+        self.layoutWidget.setObjectName("layoutWidget")
+        self.optionsLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
+        self.optionsLayout.setContentsMargins(0, 15, 0, 0)
         self.optionsLayout.setObjectName("optionsLayout")
-        self.checkRemember = QtWidgets.QCheckBox(self.rightPanel)
+        self.checkRemember = QtWidgets.QCheckBox(self.layoutWidget)
         self.checkRemember.setStyleSheet("\n"
 "QCheckBox {\n"
 "    font-size: 13px;\n"
@@ -155,7 +208,7 @@ class Ui_LoginWindow(object):
         self.optionsLayout.addWidget(self.checkRemember)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.optionsLayout.addItem(spacerItem1)
-        self.btnLupaPassword = QtWidgets.QPushButton(self.rightPanel)
+        self.btnLupaPassword = QtWidgets.QPushButton(self.layoutWidget)
         self.btnLupaPassword.setStyleSheet("\n"
 "QPushButton {\n"
 "    background-color: transparent;\n"
@@ -170,71 +223,23 @@ class Ui_LoginWindow(object):
 "            ")
         self.btnLupaPassword.setObjectName("btnLupaPassword")
         self.optionsLayout.addWidget(self.btnLupaPassword)
-        self.verticalLayout_2.addLayout(self.optionsLayout)
-        self.btnLogin = QtWidgets.QPushButton(self.rightPanel)
-        self.btnLogin.setMinimumSize(QtCore.QSize(0, 45))
-        self.btnLogin.setStyleSheet("\n"
-"QPushButton {\n"
-"    background-color: #750003;\n"
-"    color: white;\n"
-"    font-size: 16px;\n"
-"    font-weight: bold;\n"
-"    margin-top: 25px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #a00004;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #5a0002;\n"
-"}\n"
-"          ")
-        self.btnLogin.setObjectName("btnLogin")
-        self.verticalLayout_2.addWidget(self.btnLogin)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_2.addItem(spacerItem2)
-        self.registerFrame = QtWidgets.QFrame(self.rightPanel)
-        self.registerFrame.setStyleSheet("\n"
-"QFrame {\n"
-"    background-color: #f9f9f9;\n"
-"    border: 1px solid #e0e0e0;\n"
-"    border-radius: 8px;\n"
-"    padding: 20px;\n"
-"}\n"
-"          ")
-        self.registerFrame.setObjectName("registerFrame")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.registerFrame)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.lblBelumPunya = QtWidgets.QLabel(self.registerFrame)
-        self.lblBelumPunya.setStyleSheet("font-size: 13px; color: #666; text-align: center;")
-        self.lblBelumPunya.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblBelumPunya.setObjectName("lblBelumPunya")
-        self.verticalLayout_3.addWidget(self.lblBelumPunya)
-        self.btnDaftar = QtWidgets.QPushButton(self.registerFrame)
-        self.btnDaftar.setMinimumSize(QtCore.QSize(0, 40))
-        self.btnDaftar.setStyleSheet("\n"
-"QPushButton {\n"
-"    background-color: white;\n"
-"    color: #750003;\n"
-"    border: 2px solid #750003;\n"
-"    font-size: 15px;\n"
-"    font-weight: bold;\n"
-"    margin-top: 10px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #750003;\n"
-"    color: white;\n"
-"}\n"
-"             ")
-        self.btnDaftar.setObjectName("btnDaftar")
-        self.verticalLayout_3.addWidget(self.btnDaftar)
-        self.verticalLayout_2.addWidget(self.registerFrame)
         self.mainLayout.addWidget(self.rightPanel)
         LoginWindow.setCentralWidget(self.centralwidget)
         self.btnLogin.clicked.connect(self.login)
+        self.btnDaftar.clicked.connect(self.open_registrasi)
+        self.btnLupaPassword.clicked.connect(self.open_registrasi)
 
 
         self.retranslateUi(LoginWindow)
         QtCore.QMetaObject.connectSlotsByName(LoginWindow)
+        
+    def open_registrasi(self):
+        import daftar_akun_pendonor
+        self.registrasiWindow = QtWidgets.QMainWindow()
+        self.registrasiUI = daftar_akun_pendonor.Ui_SignUpWindow()
+        self.registrasiUI.setupUi(self.registrasiWindow)
+        self.registrasiWindow.show()
+        self.loginWindow.close()
         
     
     def login(self):
@@ -251,10 +256,21 @@ class Ui_LoginWindow(object):
                 self.open_dashboard(id_user)
             elif role == 3:  # petugas PMI
                 self.open_dashboard_petugas_pmi(id_user)
-            elif role == 2:  # petugas RS
+            elif role == 2:
+                from USER import get_id_rs_by_pengguna
+                id_rs = get_id_rs_by_pengguna(id_user)
+                
+                if id_rs is None:
+                    QMessageBox.warning(
+                        self.loginWindow,
+                        "Error",
+                        "Akun belum terdaftar sebagai Rumah Sakit"
+                    )
+                    return
+            
                 self.open_dashboard_petugas_rs(id_user)
-        else:
-            QMessageBox.warning(self.loginWindow, "Gagal", result)
+            else:
+                 QMessageBox.warning(self.loginWindow, "Gagal", result)
 
                 
     def open_dashboard(self, id_user):

@@ -317,6 +317,7 @@ class Ui_SignUpWindow(object):
                 self.loginUI = Ui_LoginWindow()
                 self.loginUI.setupUi(self.loginWindow)
                 self.loginWindow.show()
+                self.registwindow.close()
         else:
                 QMessageBox.warning(None, "Gagal", hasil)
                 

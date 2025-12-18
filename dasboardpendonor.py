@@ -498,6 +498,7 @@ class Ui_DonorDashboard(object):
         self.btnPendaftaran.clicked.connect(self.masuk_pendaftaran_donor)
         self.btnJadwal.clicked.connect(self.masuk_jadwal_donor)
         self.btnPendaftaran.clicked.connect(self.masuk_pendaftaran_donor)
+        self.btnProfil.clicked.connect(self.buka_profil)
 
         self.retranslateUi(DonorDashboard)
         QtCore.QMetaObject.connectSlotsByName(DonorDashboard)
@@ -537,6 +538,15 @@ class Ui_DonorDashboard(object):
         self.namaLabel.setText(nama)
         self.welcomeLabel.setText(f"Selamat Datang, {nama}!")
         self.golDarahLabel.setText(f"Golongan Darah: {gol} | NIK: {nik}")
+        
+    def buka_profil(self):
+        import akun
+        self.profil_window = QtWidgets.QMainWindow()
+        self.profil_ui = akun.Ui_ProfilDonor()
+        self.profil_ui.setupUi(self.profil_window)
+        self.profil_ui.set_pendonor(self.id_user) 
+        self.profil_window.show()
+        self.window.hide()
         
         
     def masuk_pendaftaran_donor(self):

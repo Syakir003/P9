@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+    def set_petugas(self, id_user):
+        self.id_petugas = id_user
+        
     def setupUi(self, MainWindow):
         self.id_darah = None
         self.window = MainWindow
@@ -364,7 +367,6 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.stokDarahPage)
         MainWindow.setCentralWidget(self.centralwidget)
         self.btnRefresh.clicked.connect(self.load_stok_data)
-        self.load_stok_data()
         
 
 
@@ -433,6 +435,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Lokasi Penyimpanan"))
         item = self.tableStok.horizontalHeaderItem(7)
         item.setText(_translate("MainWindow", "Aksi"))
+        self.load_stok_data()
 
 
 if __name__ == "__main__":

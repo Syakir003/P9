@@ -9,10 +9,17 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+from PERMINTAAN import Permintaan
 
 
 class Ui_MainWindow(object):
+    def set_petugas(self, id_user):
+        self.id_petugas = id_user
+        
     def setupUi(self, MainWindow):
+        self.MainWindow = MainWindow
+        self.db = Permintaan()
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
         MainWindow.setStyleSheet("\n"
@@ -385,9 +392,99 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.tableFrame)
         self.verticalLayout.addWidget(self.validasiPermintaanPage)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.btnLaporan.clicked.connect(self.tampilkan_laporan)
+        self.btnDashboard.clicked.connect(self.balik_dashboard)
+        self.btnStok.clicked.connect(self.buka_stok)
+        self.btnTransaksi.clicked.connect(self.buka_transaksi)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+                
+    def konfirmasi_permintaan(self):
+        row = self.tablePermintaan.currentRow()
+        if row < 0:
+            QMessageBox.warning(None, "Pilih Data", "Pilih permintaan terlebih dahulu")
+            return
+
+        id_permintaan = self.tablePermintaan.item(row, 0).data(QtCore.Qt.UserRole)
+
+        reply = QMessageBox.question(
+            None,
+            "Konfirmasi",
+            "Konfirmasi permintaan darah ini?",
+            QMessageBox.Yes | QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            self.db.update_status_permintaan(id_permintaan, "diproses")
+            QMessageBox.information(None, "Sukses", "Permintaan dikonfirmasi")
+            self.load_table()
+        elif reply == QMessageBox.No:
+            self.db.hapus_permintaan(id_permintaan, "ditolak")
+            QMessageBox.information(None, "Sukses", "Permintaan ditolak")
+            
+            
+    def load_table(self):
+        data = self.db.get_permintaan_menunggu()
+
+        self.tablePermintaan.setRowCount(0)
+
+        for row_data in data:
+            id_permintaan, nama_rs, no_permintaan, tanggal, status = row_data
+
+            row = self.tablePermintaan.rowCount()
+            self.tablePermintaan.insertRow(row)
+
+            item_no = QtWidgets.QTableWidgetItem(no_permintaan)
+            item_no.setData(QtCore.Qt.UserRole, id_permintaan)
+
+            self.tablePermintaan.setItem(row, 0, item_no)
+            self.tablePermintaan.setItem(row, 1, QtWidgets.QTableWidgetItem(nama_rs))
+            self.tablePermintaan.setItem(row, 6, QtWidgets.QTableWidgetItem(str(tanggal)))
+            self.tablePermintaan.setItem(row, 7, QtWidgets.QTableWidgetItem(status))
+
+            # Kolom aksi
+            btn = QtWidgets.QPushButton("Konfirmasi")
+            btn.clicked.connect(self.konfirmasi_permintaan)
+            self.tablePermintaan.setCellWidget(row, 8, btn)
+            
+    def tampilkan_laporan(self):
+        import laporan
+        self.laporanwindow = QtWidgets.QMainWindow()
+        self.ui = laporan.Ui_MainWindow()
+        self.ui.setupUi(self.laporanwindow)
+        self.laporanwindow.show()
+        self.MainWindow.close()
+            
+    def balik_dashboard(self):
+        import dasboardpetugas
+        self.dashboardwindow = QtWidgets.QMainWindow()
+        self.ui = dasboardpetugas.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.dashboardwindow)
+        self.dashboardwindow.show()
+        self.MainWindow.close()
+        
+    def buka_stok(self):
+        import stokdarah
+        self.stokwindow = QtWidgets.QMainWindow()
+        self.ui = stokdarah.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.stokwindow)
+        self.stokwindow.show()
+        self.MainWindow.close()
+        
+    def buka_transaksi(self):
+        import transaksidarah
+        self.transaksiwindow = QtWidgets.QMainWindow()
+        self.ui = transaksidarah.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.transaksiwindow)
+        self.transaksiwindow.show()
+        self.MainWindow.close()
+
+
+        
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -440,6 +537,9 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Status"))
         item = self.tablePermintaan.horizontalHeaderItem(8)
         item.setText(_translate("MainWindow", "Aksi"))
+        self.db = Permintaan()
+        self.load_table()
+
 
 
 if __name__ == "__main__":

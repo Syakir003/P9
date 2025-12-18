@@ -9,10 +9,16 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from DARAH import *
+from TRANSAKSI import *
 
 
 class Ui_MainWindow(object):
+    def set_petugas(self, id_user):
+        self.id_petugas = id_user
+
     def setupUi(self, MainWindow):
+        self.mainwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 800)
         MainWindow.setStyleSheet("\n"
@@ -165,35 +171,6 @@ class Ui_MainWindow(object):
 "            ")
         self.searchInput.setObjectName("searchInput")
         self.actionLayout.addWidget(self.searchInput)
-        self.filterTipe = QtWidgets.QComboBox(self.transaksiPage)
-        self.filterTipe.setMinimumSize(QtCore.QSize(150, 40))
-        self.filterTipe.setStyleSheet("\n"
-"QComboBox {\n"
-"    background-color: white;\n"
-"    border: 2px solid #ddd;\n"
-"    border-radius: 5px;\n"
-"    padding: 8px 15px;\n"
-"    font-size: 14px;\n"
-"}\n"
-"QComboBox:focus {\n"
-"    border: 2px solid #750003;\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: none;\n"
-"}\n"
-"QComboBox::down-arrow {\n"
-"    image: none;\n"
-"    border-left: 5px solid transparent;\n"
-"    border-right: 5px solid transparent;\n"
-"    border-top: 5px solid #750003;\n"
-"    margin-right: 10px;\n"
-"}\n"
-"            ")
-        self.filterTipe.setObjectName("filterTipe")
-        self.filterTipe.addItem("")
-        self.filterTipe.addItem("")
-        self.filterTipe.addItem("")
-        self.actionLayout.addWidget(self.filterTipe)
         self.verticalLayout_2.addLayout(self.actionLayout)
         self.statsRowLayout = QtWidgets.QHBoxLayout()
         self.statsRowLayout.setSpacing(15)
@@ -371,10 +348,90 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.tableFrame)
         self.verticalLayout.addWidget(self.transaksiPage)
         MainWindow.setCentralWidget(self.centralwidget)
+        self.btnValidasi.clicked.connect(self.buka_validasi)
+        self.btnLaporan.clicked.connect(self.buka_laporan)
+        self.btnStok.clicked.connect(self.buka_stok)
+        self.btnDashboard.clicked.connect(self.balik_dashboard)
+        self.btnDonorMasuk.clicked.connect(self.load_darah_masuk)
+        self.btnDonorKeluar.clicked.connect(self.load_darah_keluar)
 
+
+        
+        
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        
+    def load_darah_masuk(self):
+        data = darah_masuk_today()
+        self.load_data(data)
 
+    def load_darah_keluar(self):
+        data = darah_keluar_today()
+        self.load_data(data)
+
+        
+    def balik_dashboard(self):
+        import dasboardpetugas
+        self.dashboardwindow = QtWidgets.QMainWindow()
+        self.ui = dasboardpetugas.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.dashboardwindow)
+        self.dashboardwindow.show()
+        self.mainwindow.close()
+        
+    def buka_validasi(self):
+        import validasi
+        self.validasi_window = QtWidgets.QMainWindow()
+        self.ui = validasi.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.validasi_window)
+        self.validasi_window.show()
+        self.mainwindow.hide()
+        
+    def buka_laporan(self):
+        import laporan
+        self.laporan_window = QtWidgets.QMainWindow()
+        self.ui = laporan.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.laporan_window)
+        self.laporan_window.show()
+        self.mainwindow.hide()
+        
+    def buka_stok(self):
+        import stokdarah
+        self.stok_window = QtWidgets.QMainWindow()
+        self.ui = stokdarah.Ui_MainWindow()
+        self.ui.set_petugas(self.id_petugas)
+        self.ui.setupUi(self.stok_window)
+        self.stok_window.show()
+        self.mainwindow.hide()
+        
+        
+    def load_data(self, mode="ALL"):
+          # LABEL STATISTIK
+          self.valueMasuk.setText(f"{get_donor_masuk_hari_ini()} kantong")
+          self.valueKeluar.setText(f"{get_darah_keluar_hari_ini()} kantong")
+          self.valueTotal.setText(f"{get_total_transaksi_bulan_ini()} Kantong")
+
+          # FILTER DATA TABEL
+          if mode == "MASUK":
+              rows = get_donor_masuk_hari_ini()
+          elif mode == "KELUAR":
+              rows = get_riwayat_transaksi_keluar()
+          else:
+              rows = get_riwayat_transaksi()
+
+          self.tableTransaksi.setRowCount(0)
+
+          for i, row in enumerate(rows):
+              self.tableTransaksi.insertRow(i)
+              for j, val in enumerate(row):
+                  self.tableTransaksi.setItem(
+                      i, j, QtWidgets.QTableWidgetItem(str(val))
+                  )
+
+                
+        
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Dashboard PMI - Donor Darah"))
@@ -388,9 +445,6 @@ class Ui_MainWindow(object):
         self.btnDonorMasuk.setText(_translate("MainWindow", "+ Donor Masuk"))
         self.btnDonorKeluar.setText(_translate("MainWindow", "- Darah Keluar"))
         self.searchInput.setPlaceholderText(_translate("MainWindow", "🔍 Cari transaksi..."))
-        self.filterTipe.setItemText(0, _translate("MainWindow", "Semua Tipe"))
-        self.filterTipe.setItemText(1, _translate("MainWindow", "Donor Masuk"))
-        self.filterTipe.setItemText(2, _translate("MainWindow", "Darah Keluar"))
         self.iconMasuk.setText(_translate("MainWindow", "📥"))
         self.lblMasuk.setText(_translate("MainWindow", "Donor Masuk Hari Ini"))
         self.valueMasuk.setText(_translate("MainWindow", "47 kantong"))
@@ -417,6 +471,9 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Status"))
         item = self.tableTransaksi.horizontalHeaderItem(7)
         item.setText(_translate("MainWindow", "Aksi"))
+        self.load_data()
+        
+
 
 
 if __name__ == "__main__":

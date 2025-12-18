@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+from TRANSAKSI import PendaftaranDonor
 
 
 class Ui_PendaftaranDonor(object):
@@ -352,6 +354,7 @@ class Ui_PendaftaranDonor(object):
         PendaftaranDonor.setCentralWidget(self.centralwidget)
         self.btnDashboard.clicked.connect(self.balik_dashboard)
         self.btnJadwal.clicked.connect(self.masuk_jadwal_donor)
+        self.btnDaftar.clicked.connect(self.daftar_donor)
 
         self.retranslateUi(PendaftaranDonor)
         QtCore.QMetaObject.connectSlotsByName(PendaftaranDonor)
@@ -376,6 +379,61 @@ class Ui_PendaftaranDonor(object):
         self.jadwal_ui.set_pendonor(self.id_pendonor)
         self.jadwal_window.show()
         self.window.close()
+        
+    def daftar_donor(self):
+        if not self.id_pendonor:
+            QMessageBox.warning(
+                self.window,
+                "Error",
+                "Anda belum login sebagai pendonor."
+            )
+            return
+
+        berat = self.inputBerat.text().strip()
+
+        # validasi input
+        if not berat.isdigit():
+            QMessageBox.warning(
+                self.window,
+                "Error",
+                "Berat badan harus berupa angka."
+            )
+            return
+
+        berat = int(berat)
+
+        if berat < 45:
+            QMessageBox.warning(
+                self.window,
+                "Error",
+                "Berat badan minimal 45 kg."
+            )
+            return
+
+        # simpan ke database
+        db = PendaftaranDonor()
+
+        # cek apakah masih ada pendaftaran aktif
+        if db.cek_daftar_aktif(self.id_pendonor) > 0:
+            QMessageBox.information(
+                self.window,
+                "Info",
+                "Anda sudah memiliki pendaftaran donor yang menunggu."
+            )
+            return
+
+        db.simpan_pendaftaran(self.id_pendonor, berat)
+
+        QMessageBox.information(
+            self.window,
+            "Berhasil",
+            "Pendaftaran donor berhasil dikirim.\nSilakan menunggu konfirmasi PMI."
+        )
+
+        # optional: reset form
+        self.inputBerat.clear()
+        self.inputRiwayat.clear()
+
 
     def retranslateUi(self, PendaftaranDonor):
         _translate = QtCore.QCoreApplication.translate

@@ -12,7 +12,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_ProfilDonor(object):
+    def set_pendonor(self, id_user):
+        self.id_user = id_user
+        
     def setupUi(self, ProfilDonor):
+        self.mainwindow = ProfilDonor
         ProfilDonor.setObjectName("ProfilDonor")
         ProfilDonor.resize(1200, 800)
         ProfilDonor.setStyleSheet("\n"
@@ -409,9 +413,40 @@ class Ui_ProfilDonor(object):
         self.scrollArea.setWidget(self.scrollContent)
         self.verticalLayout.addWidget(self.scrollArea)
         ProfilDonor.setCentralWidget(self.centralwidget)
+        self.btnDashboard.clicked.connect(self.balik_dashboard)
+        self.btnJadwal.clicked.connect(self.buka_jadwal)
+        self.btnPendaftaran.clicked.connect(self.buka_pendaftaran)
 
         self.retranslateUi(ProfilDonor)
         QtCore.QMetaObject.connectSlotsByName(ProfilDonor)
+        
+        
+    def balik_dashboard(self):
+        import dasboardpendonor
+        self.dashboardwindow = QtWidgets.QMainWindow()
+        self.ui = dasboardpendonor.Ui_DonorDashboard()
+        self.ui.set_pendonor(self.id_user)
+        self.ui.setupUi(self.dashboardwindow)
+        self.dashboardwindow.show()
+        self.mainwindow.close()
+        
+    def buka_jadwal(self):
+        import jadwal
+        self.jadwal_window = QtWidgets.QMainWindow()
+        self.jadwal_ui = jadwal.Ui_JadwalDonor()
+        self.jadwal_ui.set_pendonor(self.id_user)
+        self.jadwal_ui.setupUi(self.jadwal_window)
+        self.jadwal_window.show()
+        self.mainwindow.close()
+        
+    def buka_pendaftaran(self):
+        import daftar_mau_donor
+        self.pendaftaran_window = QtWidgets.QMainWindow()
+        self.pendaftaran_ui = daftar_mau_donor.Ui_PendaftaranDonor()
+        self.pendaftaran_ui.set_pendonor(self.id_user)
+        self.pendaftaran_ui.setupUi(self.pendaftaran_window)
+        self.pendaftaran_window.show()
+        self.mainwindow.close()
 
     def retranslateUi(self, ProfilDonor):
         _translate = QtCore.QCoreApplication.translate
